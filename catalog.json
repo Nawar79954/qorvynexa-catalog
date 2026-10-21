@@ -1,0 +1,321 @@
+{
+ "version": 2,
+ "updated": "2026-10-10",
+ "services": [
+  {
+   "id": "netflix",
+   "name": "Netflix",
+   "category": "streaming",
+   "color": "#E50914",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://www.netflix.com/cancelplan"
+  },
+  {
+   "id": "spotify",
+   "name": "Spotify",
+   "category": "music",
+   "color": "#1DB954",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://www.spotify.com/account/subscription/"
+  },
+  {
+   "id": "youtube-premium",
+   "name": "YouTube Premium",
+   "category": "streaming",
+   "color": "#FF0000",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://www.youtube.com/paid_memberships"
+  },
+  {
+   "id": "disney-plus",
+   "name": "Disney+",
+   "category": "streaming",
+   "color": "#113CCF",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://www.disneyplus.com/account"
+  },
+  {
+   "id": "amazon-prime",
+   "name": "Amazon Prime",
+   "category": "shopping",
+   "color": "#00A8E1",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "apple-music",
+   "name": "Apple Music",
+   "category": "music",
+   "color": "#FA243C",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://apps.apple.com/account/subscriptions"
+  },
+  {
+   "id": "apple-tv",
+   "name": "Apple TV+",
+   "category": "streaming",
+   "color": "#1D1D1F",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://apps.apple.com/account/subscriptions"
+  },
+  {
+   "id": "hbo-max",
+   "name": "HBO Max",
+   "category": "streaming",
+   "color": "#5B2A86",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "paramount-plus",
+   "name": "Paramount+",
+   "category": "streaming",
+   "color": "#0064FF",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "icloud",
+   "name": "iCloud+",
+   "category": "cloud",
+   "color": "#3693F3",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://apps.apple.com/account/subscriptions"
+  },
+  {
+   "id": "google-one",
+   "name": "Google One",
+   "category": "cloud",
+   "color": "#4285F4",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://one.google.com/settings"
+  },
+  {
+   "id": "dropbox",
+   "name": "Dropbox",
+   "category": "cloud",
+   "color": "#0061FF",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://www.dropbox.com/account/plan"
+  },
+  {
+   "id": "chatgpt-plus",
+   "name": "ChatGPT Plus",
+   "category": "ai",
+   "color": "#10A37F",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "microsoft-365",
+   "name": "Microsoft 365",
+   "category": "productivity",
+   "color": "#D83B01",
+   "cycle": "yearly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://account.microsoft.com/services"
+  },
+  {
+   "id": "adobe-cc",
+   "name": "Adobe Creative Cloud",
+   "category": "productivity",
+   "color": "#FF0000",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": [],
+   "cancelUrl": "https://account.adobe.com/plans"
+  },
+  {
+   "id": "notion",
+   "name": "Notion",
+   "category": "productivity",
+   "color": "#2B2B2B",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "canva",
+   "name": "Canva",
+   "category": "productivity",
+   "color": "#00A3AD",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "duolingo",
+   "name": "Duolingo",
+   "category": "education",
+   "color": "#58CC02",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "gym",
+   "name": "Gym",
+   "category": "health",
+   "color": "#FF7043",
+   "cycle": "monthly",
+   "regions": [],
+   "plans": []
+  },
+  {
+   "id": "hulu",
+   "name": "Hulu",
+   "category": "streaming",
+   "color": "#14A76C",
+   "cycle": "monthly",
+   "regions": [
+    "US"
+   ],
+   "plans": []
+  },
+  {
+   "id": "peacock",
+   "name": "Peacock",
+   "category": "streaming",
+   "color": "#2B2B2B",
+   "cycle": "monthly",
+   "regions": [
+    "US"
+   ],
+   "plans": []
+  },
+  {
+   "id": "dazn",
+   "name": "DAZN",
+   "category": "streaming",
+   "color": "#1A1A1A",
+   "cycle": "monthly",
+   "regions": [
+    "DE",
+    "AT",
+    "CH",
+    "ES",
+    "IT",
+    "GB",
+    "CA",
+    "US"
+   ],
+   "plans": []
+  },
+  {
+   "id": "joyn",
+   "name": "Joyn",
+   "category": "streaming",
+   "color": "#E4004B",
+   "cycle": "monthly",
+   "regions": [
+    "DE",
+    "AT"
+   ],
+   "plans": []
+  },
+  {
+   "id": "rtl-plus",
+   "name": "RTL+",
+   "category": "streaming",
+   "color": "#0A2F6C",
+   "cycle": "monthly",
+   "regions": [
+    "DE"
+   ],
+   "plans": []
+  },
+  {
+   "id": "sky",
+   "name": "Sky",
+   "category": "streaming",
+   "color": "#0072C9",
+   "cycle": "monthly",
+   "regions": [
+    "GB",
+    "DE",
+    "IT"
+   ],
+   "plans": []
+  },
+  {
+   "id": "now",
+   "name": "NOW",
+   "category": "streaming",
+   "color": "#00A6A0",
+   "cycle": "monthly",
+   "regions": [
+    "GB"
+   ],
+   "plans": []
+  },
+  {
+   "id": "britbox",
+   "name": "BritBox",
+   "category": "streaming",
+   "color": "#2B2B8F",
+   "cycle": "monthly",
+   "regions": [
+    "GB",
+    "US",
+    "CA"
+   ],
+   "plans": []
+  },
+  {
+   "id": "canal-plus",
+   "name": "Canal+",
+   "category": "streaming",
+   "color": "#1B1B1B",
+   "cycle": "monthly",
+   "regions": [
+    "FR"
+   ],
+   "plans": []
+  },
+  {
+   "id": "movistar-plus",
+   "name": "Movistar Plus+",
+   "category": "streaming",
+   "color": "#019DF4",
+   "cycle": "monthly",
+   "regions": [
+    "ES"
+   ],
+   "plans": []
+  },
+  {
+   "id": "filmin",
+   "name": "Filmin",
+   "category": "streaming",
+   "color": "#E8114B",
+   "cycle": "monthly",
+   "regions": [
+    "ES"
+   ],
+   "plans": []
+  }
+ ]
+}
