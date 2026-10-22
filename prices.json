@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "updatedAt": null,
+  "automaticPrices": [],
+  "manualOverrides": [],
+  "notes": "Empty starter feed. Do not populate prices without a verifiable source. Manual overrides take precedence over automaticPrices; the bundled Flutter catalog remains the fallback."
+}
