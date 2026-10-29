@@ -1,4 +1,4 @@
-name: Weekly price feed validation
+name: Weekly price feed update and validation
 
 on:
   schedule:
@@ -6,19 +6,34 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: weekly-price-feed-validation
   cancel-in-progress: false
 
 jobs:
-  validate:
+  update-and-validate:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
 
-      - name: Validate prices.json
+      - name: Refresh prices from verified official source
+        run: python3 scripts/update_price_feed.py
+
+      - name: Validate generated feed
         run: python3 scripts/validate_price_feed.py prices.json
+
+      - name: Commit feed only when changed
+        run: |
+          if ! git diff --quiet -- prices.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add prices.json
+            git commit -m "Refresh verified subscription prices"
+            git push
+          else
+            echo "No price-feed changes to publish."
+          fi
