@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Refresh a narrowly scoped official Disney+ Netherlands price adapter.
 
-Only publishes values when the official page exposes an exact plan label and
-EUR amount in the expected format. On any mismatch, exits before writing the
-feed, preserving the last published feed.
+Only publishes a plan's first monthly amount when every matching occurrence on
+the official page agrees. This intentionally chooses the regular price shown
+immediately after the plan name, not the later six-month promotional amount.
+On ambiguity or source changes, the feed is not written.
 """
 import json
 import re
@@ -49,20 +50,26 @@ def fetch_text():
 
 
 def parse_price(text, label_pattern, plan_name):
-    # Require the price to follow the named plan closely; never infer a price
-    # from a nearby unrelated plan or bundle.
-    pattern = re.compile(
-        label_pattern + r".{0,180}?€\s*([0-9]{1,3}(?:\.[0-9]{3})*,[0-9]{2})\s*(?:per maand|/maand|per month|/month)",
-        re.IGNORECASE,
-    )
+    # Capture only the amount immediately following the plan name. The source
+    # currently lists regular monthly price first and any 6-month saver price
+    # afterward; never select the latter by searching farther into the text.
+    amount_pattern = r"€\s*([0-9]{1,3}(?:[.,][0-9]{2}))\s*(?:/\s*month|per month|/\s*maand|per maand)"
+    pattern = re.compile(label_pattern + r"\s*\(\s*" + amount_pattern, re.IGNORECASE)
     matches = pattern.findall(text)
-    if len(matches) != 1:
+    if not matches:
+        # Some page variants omit parentheses around the plan's price.
+        pattern = re.compile(label_pattern + r"\s+" + amount_pattern, re.IGNORECASE)
+        matches = pattern.findall(text)
+    if not matches:
         raise RuntimeError(
-            f"could not uniquely verify {plan_name!r} on the official page "
-            f"(matches={len(matches)}); feed was not changed"
+            f"could not verify a regular monthly price for {plan_name!r}; feed was not changed"
         )
-    value = matches[0].replace(".", "").replace(",", ".")
-    amount = float(value)
+    normalized = {float(value.replace(",", ".")) for value in matches}
+    if len(normalized) != 1:
+        raise RuntimeError(
+            f"official page has conflicting monthly prices for {plan_name!r}; feed was not changed"
+        )
+    amount = normalized.pop()
     if not 0 < amount < 1000:
         raise RuntimeError(f"implausible amount for {plan_name!r}; feed was not changed")
     return amount
@@ -85,8 +92,6 @@ def main():
             for plan, pattern in TARGETS.items()
         ]
         feed = json.loads(FEED.read_text(encoding="utf-8"))
-        # Replace only the two records managed by this adapter; preserve other
-        # providers and all manual overrides.
         managed = {(r["serviceId"], r["planName"], r["countryCode"], r["currency"]) for r in fresh}
         previous = feed.get("automaticPrices", [])
         feed["automaticPrices"] = [
