@@ -1,32 +1,35 @@
 # Qorvynexa pricing feed
 
-This feed is separate from `catalog.json`. It must never rewrite or modify the bundled catalog.
+This feed is separate from `catalog.json`. The pricing automation must never rewrite or modify the catalog.
 
 ## Endpoint
 
-After this file is merged and the existing GitHub Pages deployment publishes the repository root, the intended URL is:
-
 `https://nawar79954.github.io/qorvynexa-catalog/prices.json`
-
-Verify the URL responds with JSON before configuring the Flutter app to use it.
 
 ## Schema v1
 
-- `schemaVersion`: feed schema version.
-- `updatedAt`: UTC ISO-8601 timestamp for the latest successful feed generation, or `null` before the first generation.
-- `automaticPrices`: prices supplied by a verified, permitted source adapter.
-- `manualOverrides`: prices entered and maintained by the repository owner. These take precedence over automatic prices for the same service, plan, country, and currency.
-- Each price record should contain `serviceId`, `planName`, `countryCode`, `currency`, `amount`, `source`, and `updatedAt`.
+- `schemaVersion`: must be `1`.
+- `updatedAt`: UTC ISO-8601 timestamp for the latest successful feed generation, or `null` before generation.
+- `automaticPrices`: prices obtained from verified, permitted official sources or trusted APIs.
+- `manualOverrides`: owner-maintained records; these take precedence over automatic prices for the same service, plan, country, and currency.
+- Each record must contain `serviceId`, `planName`, `countryCode`, `currency`, `amount`, `sourceUrl`, and `updatedAt`.
+
+The field name `sourceUrl` matches the Flutter parser in `lib/data/price_feed.dart`.
+
+## Weekly validation
+
+The GitHub Actions workflow `.github/workflows/weekly-price-feed.yml` validates the feed every Monday and supports manual runs. Validation does not scrape sites, generate prices, or modify `prices.json`. A separate source adapter must be implemented and verified before automated prices can be published.
 
 ## Safety rules
 
-1. Do not invent or infer subscription prices.
-2. Do not scrape a provider unless its terms and access method permit it.
-3. Do not publish a new automatic price unless the source response is validated and sufficiently fresh.
-4. Manual overrides take precedence over automatic values.
-5. If the feed is unavailable, invalid, stale, or missing a price, the app falls back to its last valid cached feed and then to the bundled catalog.
-6. Never put API keys, tokens, or other secrets in this public file.
+1. Never invent, estimate, or currency-convert a subscription price to represent a local price.
+2. Use official provider pages or trusted APIs only where access is permitted and the returned plan, market, currency, and amount can be identified reliably.
+3. Do not publish an automatic price if its source cannot be validated or its timestamp is stale.
+4. Manual overrides take precedence over automatic prices.
+5. If a source fails, retain the last valid price rather than replacing it with an empty or guessed value.
+6. Never put API keys, tokens, or other secrets in this public repository.
+7. Never modify `catalog.json` as part of price-feed generation.
 
 ## Current status
 
-This is an initial empty schema only. It does not claim that any provider is already connected, and it does not yet perform daily price collection. Provider adapters and the Flutter merge/cache logic must be implemented and tested before the feature is considered active.
+This workflow currently validates the feed only. It does not claim that any provider adapter is connected. Until a provider adapter is implemented, `prices.json` may remain empty and the app should continue using its existing catalog prices.
