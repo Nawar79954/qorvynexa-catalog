@@ -1,7 +1,26 @@
 {
   "schemaVersion": 1,
-  "updatedAt": null,
-  "automaticPrices": [],
+  "updatedAt": "2026-10-31T13:44:59Z",
+  "automaticPrices": [
+    {
+      "serviceId": "disney-plus",
+      "planName": "With ads",
+      "countryCode": "NL",
+      "currency": "EUR",
+      "amount": 6.99,
+      "sourceUrl": "https://www.disneyplus.com/en-nl",
+      "updatedAt": "2026-10-31T13:44:59Z"
+    },
+    {
+      "serviceId": "disney-plus",
+      "planName": "Premium",
+      "countryCode": "NL",
+      "currency": "EUR",
+      "amount": 15.99,
+      "sourceUrl": "https://www.disneyplus.com/en-nl",
+      "updatedAt": "2026-10-31T13:44:59Z"
+    }
+  ],
   "manualOverrides": [],
   "notes": "Empty starter feed. Do not populate prices without a verifiable source. Manual overrides take precedence over automaticPrices; the bundled Flutter catalog remains the fallback."
 }
